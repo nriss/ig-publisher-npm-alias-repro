@@ -33,9 +33,9 @@ java -jar input-cache/publisher.jar -ig ig.ini
 
 The CI workflow reproduces the failure automatically: see [Actions](.github/workflows/build.yml).
 
-## Proposed fix
+## Proposed fix *(by Claude Sonnet 4.6)*
 
-> This is a suggested approach — please see [`issue-fhir-ig-publisher.md`](issue-fhir-ig-publisher.md) for the full analysis.
+> ⚠️ This fix was suggested by an AI assistant based on the analysis below. Please review and adjust as needed. See [`issue-fhir-ig-publisher.md`](issue-fhir-ig-publisher.md) for the full analysis.
 
 The root cause is that `copyToLanguage()` (called when `multilanguage-format: true`) creates a copy of the `ImplementationGuide` that loses the `IG_DEP_ALIASED` `UserData` flag set on alias dependency elements. Without this flag, `NPMPackageGenerator.buildPackageJson()` adds both alias entries using the plain package name, causing a duplicate key error in the JSON object.
 
