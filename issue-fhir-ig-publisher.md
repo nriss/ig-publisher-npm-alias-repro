@@ -129,4 +129,4 @@ pf.vnpms.put(v, new NPMPackageGenerator(..., vig, ...));
 
 ## Workaround
 
-Setting `"multilanguage-format": false` in the template's `config.json` disables the language-pack generation code path and avoids the error. The `i18n-default-lang` parameter continues to work for locale-based narrative rendering.
+Using a template that does **not** set `"multilanguage-format": true` (e.g. `fhir.base.template`) does not trigger the issue, since `isNewML()` returns `false` and the language-pack copy code path is never reached.
