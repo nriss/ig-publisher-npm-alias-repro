@@ -2,7 +2,7 @@
 
 Minimal FHIR IG to reproduce a bug in [HL7/fhir-ig-publisher](https://github.com/HL7/fhir-ig-publisher): multi-version npm alias dependencies fail with `Publishing Content Failed: Name '...' already exists` when the template sets `multilanguage-format: true`.
 
-See issue: <!-- link to be added once filed -->
+See issue: https://github.com/HL7/fhir-ig-publisher/issues/1321
 
 ## What this reproduces
 
