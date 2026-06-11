@@ -25,6 +25,9 @@ jobs:
       - name: Install SUSHI
         run: npm install -g fsh-sushi
 
+      - name: Run SUSHI
+        run: sushi .
+
       - name: Download IG Publisher
         run: |
           mkdir -p input-cache
@@ -32,6 +35,6 @@ jobs:
             -o input-cache/publisher.jar
 
       - name: Run IG Publisher
-        run: |
-          java -jar input-cache/publisher.jar -ig ig.ini 2>&1 | tee build.log
-          # Expected failure: "Publishing Content Failed: Name 'hl7.fhir.us.core' already exists"
+        # Expected to fail with:
+        # Publishing Content Failed: Name 'hl7.fhir.us.core' already exists
+        run: java -jar input-cache/publisher.jar -ig ig.ini 2>&1 | tee build.log
