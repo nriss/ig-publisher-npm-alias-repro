@@ -59,7 +59,7 @@ org.hl7.fhir.utilities.json.JsonException: Name 'hl7.fhir.us.core' already exist
     at org.hl7.fhir.igtools.publisher.PublisherIGLoader.load(PublisherIGLoader.java:2271)
 ```
 
-## Root cause analysis
+## Root cause analysis *(by Claude Sonnet 4.6)*
 
 The publisher correctly handles alias dependencies in `PublisherIGLoader.load()` by:
 1. Detecting `@npm:` in the `packageId`
@@ -89,9 +89,9 @@ All tested publisher versions: **2.0.29, 2.1.2, 2.2.6, 2.2.7, 2.2.8**.
 
 The feature was introduced in `hapifhir/org.hl7.fhir.core` at commit `331bcab` (2025-05-17, "Support for NPM Aliases") and the `IG_DEP_ALIASED` flag-setting code has been present in the publisher since at least 2.0.29 — but the language-pack copy path has never propagated the flag.
 
-## Suggested fix (to be reviewed)
+## Suggested fix *(by Claude Sonnet 4.6, to be reviewed)*
 
-> ⚠️ I am not a Java developer. The following is a suggested approach based on the analysis above — please review and adjust as needed.
+> ⚠️ The following fix was suggested by an AI assistant based on the analysis above. I am not a Java developer — please review and adjust as needed.
 
 After each `copyToLanguage()` (and `publishedIg.copy()` in the `generateVersions` loop), re-apply the `IG_DEP_ALIASED` flag from the original `pf.publishedIg` to the copy, since the flag is positional (the deps list order is preserved by both copy methods):
 
