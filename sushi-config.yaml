@@ -1,0 +1,24 @@
+id: org.example.npm-alias-repro
+canonical: http://example.org/fhir/npm-alias-repro
+name: NpmAliasRepro
+title: NPM Alias Multi-Version Repro
+status: draft
+version: 0.1.0
+fhirVersion: 4.0.1
+copyrightYear: 2024+
+releaseLabel: ci-build
+
+parameters:
+  i18n-default-lang: en
+
+# Two versions of the same package using npm alias syntax.
+# This triggers: "Publishing Content Failed: Name 'hl7.fhir.us.core' already exists"
+# in all tested publisher versions (2.0.29 → 2.2.8) when the template
+# sets multilanguage-format: true (e.g. HL7/ig-template-base2).
+dependencies:
+  uscore700@npm:hl7.fhir.us.core:
+    id: uscore700
+    version: 7.0.0
+  uscore610@npm:hl7.fhir.us.core:
+    id: uscore610
+    version: 6.1.0
